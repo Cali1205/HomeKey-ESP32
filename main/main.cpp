@@ -23,6 +23,7 @@
 #include "WebSocketLogSinker.h"
 #include "lwip/inet.h"
 #include "nvs_flash.h"
+#include "GPIOAllocator.hpp"
 
 std::unique_ptr<LockManager> lockManager;
 NvsCredentialStore readerDataManager;
@@ -184,6 +185,20 @@ void setup() {
   homekitLock = std::make_unique<HomeKitLock>(lambda, *lockManager, configManager, readerDataManager);
   espConfig::misc_config_t miscConfig = configManager.getConfig<espConfig::misc_config_t>();
   static const char* TAG = "Main";
+#ifdef CONFIG_IDF_TARGET_ESP32C5
+  // Onboard antenna needs no action: the board's pull-down holds the RF switch there.
+  if (miscConfig.wifiExternalAntenna) {
+    static auto antennaPin = GPIOAllocator::instance().acquire(gpio_num_t(WIFI_ANTENNA_CTRL_PIN), GPIO_MODE_OUTPUT, GPIOAllocator::PinRole::GpioOut, GPIOAllocator::PinConsumer::Hardware, "WIFI_ANTENNA");
+    if (antennaPin.has_value()) {
+      antennaPin->set_level(1);
+      ESP_LOGI(TAG, "WiFi antenna: external (GPIO%d high)", WIFI_ANTENNA_CTRL_PIN);
+    } else {
+      ESP_LOGW(TAG, "Could not acquire GPIO%d for antenna select, staying on onboard antenna", WIFI_ANTENNA_CTRL_PIN);
+    }
+  } else {
+    ESP_LOGI(TAG, "WiFi antenna: onboard");
+  }
+#endif
   if(miscConfig.nfcPinsPreset != PIN_UNSET){
     ESP_LOGI(TAG, "NFC GPIO pins preset: %s", nfcGpioPinsPresets[miscConfig.nfcPinsPreset].name.c_str());
     ESP_LOGI(TAG, "NFC preset pins: %d, %d, %d, %d", nfcGpioPinsPresets[miscConfig.nfcPinsPreset].gpioPins[0], nfcGpioPinsPresets[miscConfig.nfcPinsPreset].gpioPins[1], nfcGpioPinsPresets[miscConfig.nfcPinsPreset].gpioPins[2], nfcGpioPinsPresets[miscConfig.nfcPinsPreset].gpioPins[3]);

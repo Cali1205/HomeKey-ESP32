@@ -16,6 +16,7 @@
 	import HardwareConfig from "$lib/components/HardwareConfig.svelte";
 	import CertManager from "$lib/components/CertManager.svelte";
 	import PairingQR from "$lib/components/PairingQR.svelte";
+	import { systemInfo } from "$lib/stores/system.svelte";
 
 	interface Props {
 		misc: MiscConfig;
@@ -484,6 +485,20 @@
 								bind:nfcFastPollingEnabled={miscConfig.nfcFastPollingEnabled}
                 bind:overrideStrappingRestriction={miscConfig.overrideStrappingRestriction}
 							/>
+
+							{#if systemInfo.chip_model === 23}
+								<div class="flex items-center justify-between py-2 px-3 bg-base-100 rounded-lg">
+									<div>
+										<p class="text-sm font-medium">External WiFi Antenna</p>
+										<p class="text-xs text-base-content/60">ESP32-C5-Zero: use the IPEX connector instead of the onboard antenna (drives GPIO26)</p>
+									</div>
+									<input
+										type="checkbox"
+										bind:checked={miscConfig.wifiExternalAntenna}
+										class="toggle toggle-primary toggle-sm"
+									/>
+								</div>
+							{/if}
 
 							<!-- HomeSpan -->
 							<div class="py-2 px-3 bg-base-100 rounded-lg">

@@ -52,7 +52,7 @@ The required hardware can be obtained either by sourcing all the parts yourself 
 
 *   **What it is:** The brain of your HomeKey-ESP32 device! A microcontroller board with Wi-Fi and Bluetooth capabilities.
 *   **Why you need it:** This is where our HomeKey magic lives.
-*   **Recommendation:** Look for a board with an ESP32-C6, however, other ESP32 development boards should also work fine, precompiled firmware is being released for ESP32, ESP32-S3, ESP32-C3, or ESP32-C6.
+*   **Recommendation:** Look for a board with an ESP32-C6, however, other ESP32 development boards should also work fine, precompiled firmware is being released for ESP32, ESP32-S3, ESP32-C3, ESP32-C5, or ESP32-C6. On the Waveshare ESP32-C5-Zero, the "External WiFi Antenna" toggle under Misc → Hardware switches between the onboard antenna and the IPEX connector (reboot applies it).
 
 ##### ESP32 Buyer's Guide
 
