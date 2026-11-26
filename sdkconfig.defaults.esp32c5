@@ -1,0 +1,8 @@
+CONFIG_PN532_SS=6
+CONFIG_PN532_MOSI=8
+CONFIG_PN532_MISO=9
+CONFIG_PN532_SCK=10
+# The C5 WiFi 6 libs push the app past the 0x1E0000 OTA slot. Keep W5500 (the common SPI
+# module) and drop the other SPI Ethernet MAC/PHY drivers (~21 KB).
+CONFIG_ETH_SPI_ETHERNET_DM9051=n
+CONFIG_ETH_SPI_ETHERNET_KSZ8851SNL=n

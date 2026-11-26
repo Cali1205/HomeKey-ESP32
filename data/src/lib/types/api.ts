@@ -151,6 +151,8 @@ export interface MiscConfig {
   controlPin: number;
   /** GPIO pin for HomeSpan status indicator */
   hsStatusPin: number;
+  /** ESP32-C5-Zero: use the external IPEX antenna instead of the onboard one */
+  wifiExternalAntenna: boolean;
   /** Enable web authentication */
   webAuthEnabled: boolean;
   /** Web interface username */

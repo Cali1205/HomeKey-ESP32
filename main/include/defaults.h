@@ -54,7 +54,7 @@
 #define DEVICE_NAME "HK-{MAC}" //Device name
 #define HOMEKEY_ALWAYS_UNLOCK 0 // Flag indicating if a successful Homekey authentication should always set and publish the unlock state
 #define HOMEKEY_ALWAYS_LOCK 0  // Flag indicating if a successful Homekey authentication should always set and publish the lock state
-#ifdef CONFIG_IDF_TARGET_ESP32C6
+#if defined(CONFIG_IDF_TARGET_ESP32C6) || defined(CONFIG_IDF_TARGET_ESP32C5)
 #define HK_AUTH_PRECOMPUTE_ENABLED false // Enable HomeKey auth precompute cache
 #else 
 #define HK_AUTH_PRECOMPUTE_ENABLED true // Enable HomeKey auth precompute cache
@@ -63,6 +63,8 @@
 #define NFC_READER_TYPE 0 // 0 = PN532, 1 = PN7160
 #define NFC_IRQ_PIN 255 // PN7160 IRQ pin (255 = unset)
 #define NFC_VEN_PIN 255 // PN7160 VEN pin (255 = unset)
+#define WIFI_EXTERNAL_ANTENNA false // ESP32-C5-Zero: route WiFi to the IPEX connector instead of the onboard antenna
+#define WIFI_ANTENNA_CTRL_PIN 26 // ESP32-C5-Zero RF switch control (ANT_Ctrl, 200K pull-down = onboard antenna)
 #define HS_STATUS_LED 255 // HomeSpan Status LED GPIO pin
 #define HS_PIN 255 // GPIO Pin for a Configuration Mode button (more info on https://github.com/HomeSpan/HomeSpan/blob/master/docs/UserGuide.md#device-configuration-mode)
 #define BTR_PROX_BAT_ENABLED false // Enable or disable battery monitoring

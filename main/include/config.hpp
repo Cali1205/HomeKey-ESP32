@@ -194,6 +194,7 @@ namespace espConfig
     uint8_t nfcVenPin = NFC_VEN_PIN;
     uint8_t controlPin = HS_PIN;
     uint8_t hsStatusPin = HS_STATUS_LED;
+    bool wifiExternalAntenna = WIFI_EXTERNAL_ANTENNA;
     bool webAuthEnabled = WEB_AUTH_ENABLED;
     std::string webUsername = WEB_AUTH_USERNAME;
     std::string webPassword = WEB_AUTH_PASSWORD;

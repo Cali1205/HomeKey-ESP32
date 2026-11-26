@@ -95,7 +95,7 @@ const ConfigManager::ConfigField ConfigManager::kConfigFields[ConfigManager::kFi
   F("https", https_certs_t, serverCert, Str),
   F("https", https_certs_t, privateKey, Str),
   F("https", https_certs_t, caCert, Str),
-  // --- misc (39) ---
+  // --- misc (40) ---
   F("misc", misc_config_t, deviceName, Str),
   F("misc", misc_config_t, otaPasswd, Str),
   F("misc", misc_config_t, hk_key_color, U8),
@@ -109,6 +109,7 @@ const ConfigManager::ConfigField ConfigManager::kConfigFields[ConfigManager::kFi
   F("misc", misc_config_t, nfcVenPin, U8),
   F("misc", misc_config_t, controlPin, U8),
   F("misc", misc_config_t, hsStatusPin, U8),
+  F("misc", misc_config_t, wifiExternalAntenna, Bool),
   F("misc", misc_config_t, webAuthEnabled, Bool),
   F("misc", misc_config_t, webUsername, Str),
   F("misc", misc_config_t, webPassword, Str),
